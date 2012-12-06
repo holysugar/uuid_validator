@@ -1,0 +1,5 @@
+ja:
+  errors:
+    messages:
+      not_an_uuid: "UUID を入力してください。"
+

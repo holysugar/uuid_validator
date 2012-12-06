@@ -1,0 +1,5 @@
+en:
+  errors:
+    messages:
+      not_an_uuid: "is not an uuid"
+
