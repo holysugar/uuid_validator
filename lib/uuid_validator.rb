@@ -1,5 +1,6 @@
 require 'active_model/validations/uuid_validator'
 require "uuid_validator/version"
+require "uuid_validator/valid_uuid"
 
 module UuidValidator
 end
