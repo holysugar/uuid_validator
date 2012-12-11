@@ -10,7 +10,7 @@ Gem::Specification.new do |gem|
   gem.email         = ["holysugar@gmail.com"]
   gem.description   = %q{UUID Validator for ActiveModel}
   gem.summary       = %q{UUID Validator for ActiveModel}
-  gem.homepage      = ""
+  gem.homepage      = "https://github.com/holysugar/uuid_validator"
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
