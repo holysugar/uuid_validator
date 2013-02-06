@@ -73,5 +73,65 @@ describe ActiveModel::Validations::UuidValidator do
       end
     end
   end
+
+  describe "validates :key, :uuid => {lower_only: true}" do
+    before do
+      TestModel.validates :key, :uuid => {lower_only: true}
+    end
+
+    describe "passes for wikipedia sample" do
+      it "is valid" do
+        must_be_valid "550e8400-e29b-41d4-a716-446655440000"
+      end
+    end
+
+    describe "SecureRandom.uuid" do
+      it "is valid" do
+        must_be_valid SecureRandom.uuid
+      end
+    end
+
+    describe "SecureRandom.uuid.upcase" do
+      it "is invalid" do
+        must_be_error SecureRandom.uuid.upcase
+      end
+    end
+
+    describe "when nil" do
+      it "is invalid" do
+        must_be_error nil
+      end
+    end
+  end
+
+  describe "validates :key, :uuid => {upper_only: true}" do
+    before do
+      TestModel.validates :key, :uuid => {upper_only: true}
+    end
+
+    describe "passes for wikipedia sample" do
+      it "is invalid" do
+        must_be_error "550e8400-e29b-41d4-a716-446655440000"
+      end
+    end
+
+    describe "SecureRandom.uuid" do
+      it "is invalid" do
+        must_be_error SecureRandom.uuid
+      end
+    end
+
+    describe "SecureRandom.uuid.upcase" do
+      it "is valid" do
+        must_be_valid SecureRandom.uuid.upcase
+      end
+    end
+
+    describe "when nil" do
+      it "is invalid" do
+        must_be_error nil
+      end
+    end
+  end
 end
 
