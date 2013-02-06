@@ -80,5 +80,27 @@ describe ActiveModel::Validations::UuidValidator do
     end
 
   end
+
+  describe "validates :key, :uuid =>  { :lower => true }" do
+    before do
+      TestModel.validates :key, :uuid =>  { :lower => true }
+    end
+
+    describe "passes for wikipedia sample" do
+      it "is valid" do
+        key = "550e8400-e29b-41d4-a716-446655440000"
+        model = TestModel.new(key: key)
+        model.valid?.must_equal true
+      end
+    end
+
+    describe "passes for wikipedia sample upper-case" do
+      it "is valid" do
+        key = "550e8400-e29b-41d4-a716-446655440000".upcase
+        model = TestModel.new(key: key)
+        model.valid?.must_equal false
+      end
+    end
+  end
 end
 
