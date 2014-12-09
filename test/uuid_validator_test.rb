@@ -133,5 +133,29 @@ describe ActiveModel::Validations::UuidValidator do
       end
     end
   end
+
+  describe "validates :key, :uuid => { message: 'UUID error' } " do
+    before do
+      TestModel.validates :key, :uuid => { message: "UUID error" }
+    end
+
+    describe "when nil" do
+      it "is invalid" do
+        must_be_error nil, "UUID error"
+      end
+    end
+
+    describe "when empty string" do
+      it "is invalid" do
+        must_be_error "", "UUID error"
+      end
+    end
+
+    describe "when non number" do
+      it "is invalid" do
+        must_be_error "550e8400-e29b-41d4-a716-XXXXXXXXXXXX", "UUID error"
+      end
+    end
+  end
 end
 
