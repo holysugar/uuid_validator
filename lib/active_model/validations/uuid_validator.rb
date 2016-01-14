@@ -19,7 +19,7 @@ module ActiveModel
       end
 
       def validate_each(record, attribute, value)
-        record.errors.add(attribute, :not_an_uuid) unless value =~ @re
+        record.errors.add(attribute, :not_an_uuid, options) unless value =~ @re
       end
 
     end
